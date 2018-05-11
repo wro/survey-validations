@@ -1,8 +1,10 @@
 {
   "translations.title.required": "Title is required",
-  "translations.title.minlength": "Title should have length of at least {{requiredLength}} but it was {{actualLength}}",
+  "translations.title.minlength": "Survey Title should have length of at least {{requiredLength}} but it was {{actualLength}}",
   "translations.description.required": "Description is required",
-  "questionBlocks.*.questions.*.question.required": "Question is required",
-  "questionBlocks.*.questions.*.type.required": "Type is required",
-  "questionBlocks.*.questions.*.answer.required": "Answer is required"
+  "questionBlocks.*.title.required": "Question block {{order}} title is required",
+  "questionBlocks.*.questions.*.question.required": "Question {{order}} is required",
+  "questionBlocks.*.questions.*.type.required": "Type of question {{order}} is required",
+  "questionBlocks.*.questions.*.answer.required": "Answer of question {{order}} is required",
+  "questionBlocks.*.questions.*.params.feedback.required": "Feedback of question {{order}} is required"
 }
