@@ -81,37 +81,25 @@ export class AppComponent {
 
   validate() {
     let errors = this.validationService.getErrors(this.form.controls);
-    console.log(errors);
+    console.log('errors', errors);
     this.messages = errors.map(error => {
 
       let messageParams = {}; //error.error_value
 
-      if(error.message.includes('*')){
-
-        // Find nearest object with in parent form with order property to use as message param
-        let objectPath = error.full_control_name.substr(0, error.full_control_name.lastIndexOf('.'));
-        while(objectPath != ''){
-          let parent = objectPath.
-              replace(/\[/g, '.').
-              replace(/\]/g, '').
-              split('.').
-              reduce((o, k) => (o || {})[k], this.form.value);
-
-           // Check if parent form has an order property
-           if(parent.order){
-             messageParams['order'] = parent.order;
-             break;
-           }
-
-          objectPath = objectPath.substr(0, objectPath.lastIndexOf('.'));
+      let parts = error.full_control_name.split('.');
+      parts.forEach((part, idx) => {
+        let isNumberRegex = /[0-9]+/;
+        if (isNumberRegex.test(part)) {
+          let arrayName = parts[idx - 1];
+          messageParams[arrayName + 'Idx'] = part
         }
-      }
+      });
 
       return {
-        text: error.message,
+        text: error.message.replace(/\d+/g, '*'),
         params: messageParams
       }
     });
-    console.log(this.messages);
+    console.log('messages', this.messages);
   }
 }

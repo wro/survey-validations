@@ -23,7 +23,7 @@ export class ValidationService {
             error_name: keyError,
             error_value: controlErrors[ keyError ],
             full_control_name: fullControlName,
-            message : (fullControlName + '.' + keyError).replace(/\d+/g, '*')
+            message : fullControlName + '.' + keyError
           });
         });
       }
